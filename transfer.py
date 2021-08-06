@@ -36,7 +36,7 @@ def transfer(
     input_file = sys.argv[1]
     output_file = sys.argv[2]
     is_allow_null = sys.argv[3]
-    expected_result = []
+    expected_result = {}
     null_value = '' if is_allow_null else None
 
     t = threading.Thread(target=animate)
@@ -57,9 +57,9 @@ def transfer(
             for key in key_set:
                 value = real_data.get(key) if real_data.get(key) else null_value
 
-                expected_item.update({key: value})
+                v[0].update({key: value})
 
-            expected_result.append(expected_item)
+            expected_result.update({i: v})
 
         # Close the input file
         input_data.close()
